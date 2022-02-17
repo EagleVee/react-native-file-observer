@@ -11,11 +11,11 @@ npm install react-native-file-observer
 ## Usage
 
 ```js
-import { multiply } from "react-native-file-observer";
+import { useFileStorages } from "react-native-file-observer";
 
 // ...
 
-const result = await multiply(3, 7);
+const { emitStore, store, clearStore } = useFileStorages();
 ```
 
 ## Contributing

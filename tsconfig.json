@@ -24,7 +24,5 @@
     "strict": true,
     "target": "esnext",
     "declaration": true,
-    "declarationMap": true
   },
-  "exclude": ["example", "node_modules"]
 }
