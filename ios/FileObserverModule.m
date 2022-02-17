@@ -86,6 +86,20 @@ RCT_REMAP_METHOD(clearFileToEmptyObject,
   [data writeToFile:path atomically:YES];
 }
 
+RCT_REMAP_METHOD(onStartListenerObserver,
+                 startResolve:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+
+{
+  
+}
+
+RCT_REMAP_METHOD(onStopListenerObserver,
+                 stopResolve:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+
+{
+
+}
+
 + (BOOL)requiresMainQueueSetup{
   return NO;
 }

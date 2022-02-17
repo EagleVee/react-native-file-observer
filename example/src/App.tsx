@@ -4,28 +4,19 @@ import {
   View,
   Text,
   Button,
-  NativeModules,
-  NativeEventEmitter,
-  Platform,
+  SafeAreaView,
+  Modal,
 } from 'react-native';
+import RNFS from 'react-native-fs';
 import useFileStorages from './hooks/useFileStorages';
 
-const { FileObserverModule } = NativeModules;
-const eventEmitter = new NativeEventEmitter(FileObserverModule);
-console.log('Event emitter', eventEmitter);
-console.log('File observer module', FileObserverModule);
 
 export default function App() {
-  // const { emitStore, store, clearStore } = {
-  //   emitStore: (data: any) => {
-  //     console.log('Data', data);
-  //   },
-  //   store: {},
-  //   clearStore: () => {},
-  // };
+  const [show,setShow] = React.useState(false);
   const { emitStore, store, clearStore } = useFileStorages();
   const onPress1 = async () => {
     try {
+      const STORE_PATH = RNFS.TemporaryDirectoryPath + 'store.json';
       const data = {
         menu: {
           id: 1,
@@ -37,6 +28,8 @@ export default function App() {
       console.log('error: ', error);
     }
   };
+
+
 
   const onPress2 = async () => {
     try {
@@ -53,7 +46,13 @@ export default function App() {
   };
 
   return (
-    <View>
+    <SafeAreaView style={{flex:1}}>
+      <Button title="Show" color="#841584" onPress={()=>{
+        setShow(true)
+      }} />
+      <Modal 
+      animationType='slide'
+      visible={show}>
       <Button title="Update 1" color="#841584" onPress={onPress1} />
       <Button title="Update 2" color="#841584" onPress={onPress2} />
       <Button
@@ -63,9 +62,17 @@ export default function App() {
           await clearStore();
         }}
       />
+      <Button
+        title="Close"
+        color="#841584"
+        onPress={async () => {
+          setShow(false)
+        }}
+      />
       <View style={{ width: '100%', height: 100, alignSelf: 'center' }}>
-        <Text>{JSON.stringify(store)}</Text>
+        <Text>{JSON.stringify(store)}</Text> 
       </View>
-    </View>
+      </Modal>
+    </SafeAreaView>
   );
 }

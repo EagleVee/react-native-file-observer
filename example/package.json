@@ -12,7 +12,8 @@
     "escape-string-regexp": "^5.0.0",
     "metro-config": "^0.68.0",
     "react": "17.0.1",
-    "react-native": "0.64.2"
+    "react-native": "^0.64.2",
+    "react-native-fs": "^2.18.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
