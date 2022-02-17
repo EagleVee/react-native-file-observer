@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { NativeEventEmitter, NativeModules, Platform } from 'react-native';
 import RNFS from 'react-native-fs';
-import type { IUseFilesStorage } from '../types/useFileStorages';
 
 const { FileObserverModule } = NativeModules;
 
-const useFileStorages = (): IUseFilesStorage => {
+const useFileStorages = (): {
+  store: Object;
+  emitStore: (value: Object) => Promise<void>;
+  clearStore: () => Promise<void>;
+} => {
   const [store, setStore] = useState({});
   const STORE_PATH = RNFS.TemporaryDirectoryPath + 'store.json';
   useEffect(() => {

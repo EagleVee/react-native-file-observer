@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import { useFileStorages } from 'react-native-file-observer';
 
 export default function App() {
@@ -51,17 +51,3 @@ export default function App() {
     </View>
   );
 }
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});
