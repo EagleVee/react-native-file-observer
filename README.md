@@ -6,6 +6,7 @@ React Native package that helps monitoring file on device
 
 ```sh
 npm install react-native-file-observer
+npm install react-native-fs
 ```
 
 ## Usage
