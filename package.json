@@ -1,6 +1,6 @@
 {
   "name": "react-native-file-observer",
-  "version": "0.0.1",
+  "version": "0.0.1-beta.1",
   "description": "React Native package that helps monitoring file on device",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -30,7 +30,7 @@
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods",
-    "beta": "npm publish --beta"
+    "beta": "npm publish --tag beta"
   },
   "keywords": [
     "react-native",
