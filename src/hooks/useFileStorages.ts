@@ -12,9 +12,9 @@ const useFileStorages = (): {
   const [store, setStore] = useState({});
   const STORE_PATH = RNFS.TemporaryDirectoryPath + 'store.json';
   useEffect(() => {
-    RNFS.exists(STORE_PATH).then((result) => {
+    RNFS.exists(STORE_PATH).then(async (result) => {
       if (result) {
-        const storeParse = parseData(STORE_PATH);
+        const storeParse = await parseData(STORE_PATH);
         setStore(storeParse);
       }
     });
@@ -51,7 +51,7 @@ const useFileStorages = (): {
     }
     const exists = await RNFS.exists(STORE_PATH);
     if (exists) {
-      const storeParse = parseData(STORE_PATH);
+      const storeParse = await parseData(STORE_PATH);
       if (storeParse) {
         await RNFS.writeFile(
           STORE_PATH,
