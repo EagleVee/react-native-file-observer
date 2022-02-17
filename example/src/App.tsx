@@ -1,22 +1,13 @@
 import * as React from 'react';
 
-import {
-  View,
-  Text,
-  Button,
-  SafeAreaView,
-  Modal,
-} from 'react-native';
-import RNFS from 'react-native-fs';
+import { View, Text, Button, SafeAreaView, Modal } from 'react-native';
 import useFileStorages from './hooks/useFileStorages';
 
-
 export default function App() {
-  const [show,setShow] = React.useState(false);
+  const [show, setShow] = React.useState(false);
   const { emitStore, store, clearStore } = useFileStorages();
   const onPress1 = async () => {
     try {
-      const STORE_PATH = RNFS.TemporaryDirectoryPath + 'store.json';
       const data = {
         menu: {
           id: 1,
@@ -28,8 +19,6 @@ export default function App() {
       console.log('error: ', error);
     }
   };
-
-
 
   const onPress2 = async () => {
     try {
@@ -46,32 +35,34 @@ export default function App() {
   };
 
   return (
-    <SafeAreaView style={{flex:1}}>
-      <Button title="Show" color="#841584" onPress={()=>{
-        setShow(true)
-      }} />
-      <Modal 
-      animationType='slide'
-      visible={show}>
-      <Button title="Update 1" color="#841584" onPress={onPress1} />
-      <Button title="Update 2" color="#841584" onPress={onPress2} />
+    <SafeAreaView style={{ flex: 1 }}>
       <Button
-        title="Clear"
+        title="Show"
         color="#841584"
-        onPress={async () => {
-          await clearStore();
+        onPress={() => {
+          setShow(true);
         }}
       />
-      <Button
-        title="Close"
-        color="#841584"
-        onPress={async () => {
-          setShow(false)
-        }}
-      />
-      <View style={{ width: '100%', height: 100, alignSelf: 'center' }}>
-        <Text>{JSON.stringify(store)}</Text> 
-      </View>
+      <Modal animationType="slide" visible={show}>
+        <Button title="Update 1" color="#841584" onPress={onPress1} />
+        <Button title="Update 2" color="#841584" onPress={onPress2} />
+        <Button
+          title="Clear"
+          color="#841584"
+          onPress={async () => {
+            await clearStore();
+          }}
+        />
+        <Button
+          title="Close"
+          color="#841584"
+          onPress={async () => {
+            setShow(false);
+          }}
+        />
+        <View style={{ width: '100%', height: 100, alignSelf: 'center' }}>
+          <Text>{JSON.stringify(store)}</Text>
+        </View>
       </Modal>
     </SafeAreaView>
   );
