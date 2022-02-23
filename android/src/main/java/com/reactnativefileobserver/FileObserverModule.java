@@ -71,15 +71,18 @@ public class FileObserverModule extends ReactContextBaseJavaModule {
   public void initWatchFile(String path, String eventFireName) {
     // set up a file observer to watch this directory
     // check that it's not equal to .probe because thats created every time camera is launched
-    observer = new FileObserver(path, FileObserver.ALL_EVENTS) { // set up a file observer to watch this directory
-      @Override
-      public void onEvent(int event, final String file) {
-        if (event == FileObserver.CLOSE_WRITE || event == FileObserver.DELETE) {
-          String content = mReadJsonData(path);
-          sendEvent(reactContext, eventFireName, content);
+    if(observer==null){
+      observer = new FileObserver(path, FileObserver.ALL_EVENTS) { // set up a file observer to watch this directory
+        @Override
+        public void onEvent(int event, final String file) {
+          if (event == FileObserver.CLOSE_WRITE || event == FileObserver.DELETE) {
+            String content = mReadJsonData(path);
+            sendEvent(reactContext, eventFireName, content);
+          }
         }
-      }
-    };
+      };
+      observer.startWatching();
+    }
   }
 
 
@@ -97,15 +100,15 @@ public class FileObserverModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void onStopListenerObserver() {
-    if (observer != null) {
-      observer.stopWatching();
-    }
+//    if (observer != null) {
+//      observer.stopWatching();
+//    }
   }
 
   @ReactMethod
   public void onStartListenerObserver() {
-    if (observer != null) {
-      observer.startWatching();
-    }
+//    if (observer != null) {
+//      observer.startWatching();
+//    }
   }
 }
